@@ -13,7 +13,7 @@ if (!photoId) { console.error('id param not found') } else {
   console.log(photoId);
 }
 
-camera_button.addEventListener('click', async function() {
+document.addEventListener("DOMContentLoaded", async function() {
    	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
 	video.srcObject = stream;
 });
