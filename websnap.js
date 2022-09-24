@@ -1,3 +1,5 @@
+let stuff_org_port = "2000"; // SET THIS TO THE PORT OF STUFF-ORG
+let stuff_org_address = window.location.protocol + "//" + window.location.hostname + ":" + stuff_org_port;
 let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
 let canvas = document.querySelector("#canvas");
@@ -38,6 +40,7 @@ canvas.toBlob(function(blob) {
                 picture.fillStyle = '#FFFFFF';
                 picture.fillText("image saved as:", 5, 100);
                 picture.fillText(fileName, 5, 200);
+                window.location.href = stuff_org_address + "/form?id=" + photoId; // send us back to stuff-org at the correct URL
               } else {
                 picture.font = "75px serif";
                 picture.fillStyle = '#FF0000';
