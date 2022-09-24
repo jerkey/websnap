@@ -1,7 +1,5 @@
 let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
-let take_photo = document.querySelector("#take-photo");
-let save_photo = document.querySelector("#save-photo");
 let canvas = document.querySelector("#canvas");
 let picture = canvas.getContext('2d') // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 
@@ -19,11 +17,11 @@ document.addEventListener("DOMContentLoaded", async function() {
 	video.srcObject = stream;
 });
 
-take_photo.addEventListener('click', function() {
+video.addEventListener('click', function() {
   picture.drawImage(video, 0, 0, canvas.width, canvas.height);
 }); // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement
 
-save_photo.addEventListener('click', function() {
+canvas.addEventListener('click', function() {
 canvas.toBlob(function(blob) {
       let fileName = photoId+'.jpg'
       file = new File([blob], fileName, { type: 'image/jpeg' });
