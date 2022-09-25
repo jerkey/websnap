@@ -15,8 +15,8 @@ if (!photoId) { console.error('id param not found') } else {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
-   	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-	video.srcObject = stream;
+  let stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 640, facingMode: "environment" }, audio: false });
+  video.srcObject = stream; // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 });
 
 video.addEventListener('click', function() {
