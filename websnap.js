@@ -24,29 +24,29 @@ video.addEventListener('click', function() {
 }); // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement
 
 canvas.addEventListener('click', function() {
-canvas.toBlob(function(blob) {
-      let fileName = photoId+'.jpg'
-      file = new File([blob], fileName, { type: 'image/jpeg' });
-      let data = new FormData();
+  canvas.toBlob(function(blob) {
+    let fileName = photoId+'.jpg'
+    file = new File([blob], fileName, { type: 'image/jpeg' });
+    let data = new FormData();
 
-      data.append('file', file);
+    data.append('file', file); // why is this here?
 
-      let request = new XMLHttpRequest();
-      request.open('POST', 'uploadpic'); // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
-      request.addEventListener('loadend', function(e) {
-	      console.log("res:",request.response);
-              if (request.response == "ok") { // this only happens if the server did res.status(200).send('ok');
-                picture.font = "75px serif";
-                picture.fillStyle = '#FFFFFF';
-                picture.fillText("image saved as:", 5, 100);
-                picture.fillText(fileName, 5, 200);
-                window.location.href = stuff_org_address + "/form?id=" + photoId; // send us back to stuff-org at the correct URL
-              } else {
-                picture.font = "75px serif";
-                picture.fillStyle = '#FF0000';
-                picture.fillText("ERROR! See console.log", 5, 100);
-              }
-      });
-      request.send(data);
+    let request = new XMLHttpRequest();
+    request.open('POST', 'uploadpic'); // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+    request.addEventListener('loadend', function(e) {
+      console.log("res:",request.response);
+      if (request.response == "ok") { // this only happens if the server did res.status(200).send('ok');
+        picture.font = "75px serif";
+        picture.fillStyle = '#FFFFFF';
+        picture.fillText("image saved as:", 5, 100);
+        picture.fillText(fileName, 5, 200);
+        window.location.href = stuff_org_address + "/form?id=" + photoId; // send us back to stuff-org at the correct URL
+      } else {
+        picture.font = "75px serif";
+        picture.fillStyle = '#FF0000';
+        picture.fillText("ERROR! See console.log", 5, 100);
+      }
+    });
+    request.send(data);
   }, 'image/jpeg');
 });
