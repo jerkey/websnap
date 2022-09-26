@@ -15,7 +15,8 @@ if (myArgs[2]) { // if a parameter is specified (0 and 1 are node and this file)
 }
 
 app.post('/uploadpic', upload.any(), (req, res) => {
-  console.log('POST /uploadpic/');
+  var now = new Date()
+  console.log('POST /uploadpic/', now.toUTCString());
   console.log('originalname: ', req.files[0].originalname, 'size: ', req.files[0].size);
   var filenameToWrite = savePath + req.files[0].originalname.replace(/\//g, 'slash') // replace any slashes in filename with "slash"
   fs.writeFile(filenameToWrite, req.files[0].buffer, (err) => {
